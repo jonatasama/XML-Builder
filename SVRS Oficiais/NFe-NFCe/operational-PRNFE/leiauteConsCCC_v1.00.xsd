@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="tiposBasicoCCC_v1.03.xsd"/>
+	<xs:complexType name="TconsCCC">
+		<xs:annotation>
+			<xs:documentation>Tipo Pedido de Consulta de cadastro de contribuintes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>
+            Identificação do Ambiente:
+            1 - Produção
+            2 - Homologação
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão da aplicação solicitante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indCons">
+				<xs:annotation>
+					<xs:documentation>
+            Indicador do escopo da consulta ao cadastro de emitentes:
+            1 – Cadastro resumido;
+            2 – Cadastro completo.
+          </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="indCompRet">
+				<xs:annotation>
+					<xs:documentation>
+            Indicador de compactação da mensagem de retorno
+            0 – sem compactação;
+            1 - Compactação no padrão gZip.
+          </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>argumento de pesquisa</xs:documentation>
+				</xs:annotation>
+				<xs:element name="ultNSUCCC">
+					<xs:annotation>
+						<xs:documentation>Último NSU cadastral CCC já recebido. Se informado com Zero será feita a pesquisa a partir do primeiro contribuinte cadastrado. </xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:pattern value="[0-9]{1,15}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ultNSUCCCMovto">
+					<xs:annotation>
+						<xs:documentation>Último NSU movimento CCC já recebido. Se informado com Zero será feita a pesquisa a partir do primeiro movimento realizado. </xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:pattern value="[0-9]{1,15}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+      <xs:element name="cUF" type="TCodUfIBGE" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Código da UF responsável pelo cadastro</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>argumento de pesquisa</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CNPJ" type="TCnpjVar">
+					<xs:annotation>
+						<xs:documentation>CNPJ do contribuinte</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CPF" type="TCpfVar">
+					<xs:annotation>
+						<xs:documentation>CPF do contribuinte</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="IE" type="TIe" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inscrição Estadual do contribuinte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerConsCCC" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TretConsCCC">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno Download do Cadastro Centralizado de Contribuintes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>
+            Identificação do Ambiente:
+            1 - Produção
+            2 - Homologação
+          </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que recebeu o Lote.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da mensagem enviada.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição literal do status do serviço solicitado.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dhResp" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Data e hora da resposta, no formato AAAA-MM-DDTHH:MM:SS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indCons" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+            Indicador do escopo da consulta ao cadastro de emitentes:
+            1 – Cadastro resumido;
+            2 – Cadastro completo.
+          </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+      <xs:element name="indCompRet" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            Indicador de compactação da mensagem de retorno
+            0 – sem compactação;
+            1 - Compactação no padrão gZip.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>argumento de pesquisa</xs:documentation>
+        </xs:annotation>
+        <xs:element name="ultNSUCCC">
+          <xs:annotation>
+            <xs:documentation>Último NSU cadastral CCC já recebido. Se informado com Zero será feita a pesquisa a partir do primeiro contribuinte cadastrado. </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:pattern value="[0-9]{1,15}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="ultNSUCCCMovto">
+          <xs:annotation>
+            <xs:documentation>Último NSU movimento CCC já recebido. Se informado com Zero será feita a pesquisa a partir do primeiro movimento realizado. </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:pattern value="[0-9]{1,15}"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:choice>
+			<xs:element name="cUF" type="TCodUfIBGE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código da UF responsável pelo cadastro</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>argumento de pesquisa</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CNPJ" type="TCnpjVar" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>CNPJ do contribuinte</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CPF" type="TCpfVar" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>CPF do contribuinte</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="IE" type="TIe" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Inscrição Estadual do contribuinte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>argumento de pesquisa</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CCCRes" minOccurs="0" maxOccurs="500">
+					<xs:annotation>
+						<xs:documentation>Grupo de Informações CCC resumido</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+            <xs:sequence>
+              <xs:element name="cUF" type="TCodUfIBGE">
+                <xs:annotation>
+                  <xs:documentation>Código da UF do contribuinte</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:choice>
+                <xs:annotation>
+                  <xs:documentation>CPF ou CNPJ</xs:documentation>
+                </xs:annotation>
+                <xs:element name="CNPJ" type="TCnpjVar">
+                  <xs:annotation>
+                    <xs:documentation>CNPJ do contribuinte</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="CPF" type="TCpfVar">
+                  <xs:annotation>
+                    <xs:documentation>CPF do contribuinte</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+              <xs:element name="IE" type="TIe">
+                <xs:annotation>
+                  <xs:documentation>Inscrição Estadual do contribuinte </xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="cSit">
+                <xs:annotation>
+                  <xs:documentation>
+                    Situação do contribuinte para a SEFAZ
+                    0 - Não habilitado
+                    1 - Habilitado
+                  </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="0"/>
+                    <xs:enumeration value="1"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="indST">
+                <xs:annotation>
+                  <xs:documentation>
+                    Indicador de Substituto Tributário
+                    0=Não Substituto
+                    1=Substituto
+                  </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="0"/>
+                    <xs:enumeration value="1"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:sequence>
+                <xs:element name="infCad" minOccurs="0">
+                  <xs:annotation>
+                    <xs:documentation>Informações cadastrais do contribuinte consultado</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="xNome">
+                        <xs:annotation>
+                          <xs:documentation>Razão Social ou nome do contribuinte</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="TString">
+                            <xs:minLength value="3"/>
+                            <xs:maxLength value="100"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:sequence>
+						<xs:attribute name="NSUCCC" use="required"/>
+						<xs:attribute name="NSUCCCMovto" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CCCCompl" minOccurs="0" maxOccurs="500">
+					<xs:annotation>
+						<xs:documentation>Grupo de Informações CCC resumido</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+              <xs:element name="cUF" type="TCodUfIBGE">
+                <xs:annotation>
+                  <xs:documentation>Código da UF do contribuinte</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:choice>
+                <xs:annotation>
+                  <xs:documentation>CPF ou CNPJ</xs:documentation>
+                </xs:annotation>
+                <xs:element name="CNPJ" type="TCnpjVar">
+                  <xs:annotation>
+                    <xs:documentation>CNPJ do contribuinte</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="CPF" type="TCpfVar">
+                  <xs:annotation>
+                    <xs:documentation>CPF do contribuinte</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:choice>
+							<xs:element name="IE" type="TIe">
+								<xs:annotation>
+									<xs:documentation>Inscrição Estadual do contribuinte </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cSit">
+								<xs:annotation>
+									<xs:documentation>
+                    Situação do contribuinte para a SEFAZ
+                    0 - Não habilitado
+                    1 - Habilitado
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="0"/>
+										<xs:enumeration value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="dSit" type="xs:date" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Data da Situação Cadastral informada</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+							<xs:element name="indST">
+								<xs:annotation>
+									<xs:documentation>
+                    Indicador de Substituto Tributário
+                    0=Não Substituto
+                    1=Substituto
+                  </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="0"/>
+										<xs:enumeration value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:sequence>
+								<xs:element name="infCad" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Informações cadastrais do contribuinte consultado</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="xNome">
+												<xs:annotation>
+													<xs:documentation>Razão Social ou nome do contribuinte</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="TString">
+														<xs:minLength value="3"/>
+														<xs:maxLength value="100"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="xFant" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Razão Social ou nome do contribuinte</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="TString">
+														<xs:minLength value="2"/>
+														<xs:maxLength value="60"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="UFEnder" type="TUf" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>
+                            Sigla da UF de Localização do contribuinte. Em alguma situações,
+                            a UF de localização pode ser diferente da UF do contribuinte, como no caso de IE de
+                            Substituto Tributário
+                          </xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="xRegApur">
+												<xs:annotation>
+													<xs:documentation>Regime de Apuração do ICMS do contribuinte</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:token">
+														<xs:minLength value="1"/>
+														<xs:maxLength value="60"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="CNAE" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>CNAE principal do contribuinte</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:token">
+														<xs:pattern value="[0-9]{6,7}"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="dIniAtiv" type="xs:date" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Data de início de atividades do contribuinte</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="dBaixa" type="xs:date" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Data de baixa do contribuinte.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="IEUnica" type="TIe" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>
+                            Informar o campo somente se o Contribuinte tiver IE Única
+                          </xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="IEAtual" type="TIe" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>
+                            Informar o campo somente se o Contribuinte Informado(IE) tiver tido a troca da Inscrição
+                            Estadual. Se for o caso, o campo IE deste registro corresponde a IE anterior do Contribuinte
+                          </xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="infEnder" type="TEndereco" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Endereço</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:sequence>
+						<xs:attribute name="NSUCCC" use="required"/>
+						<xs:attribute name="NSUCCCMovto" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CCCCompacto" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Retorno compactado</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:base64Binary"/>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerConsCCC" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TEndereco">
+		<xs:annotation>
+			<xs:documentation>Tipo Dados do Endereço</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="xLgr" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Logradouro</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nro" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Número</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xCpl" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Complemento</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xBairro" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bairro</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cMun" type="TCodMunIBGE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Código do município (utilizar a tabela do IBGE)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMun" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Nome do município</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CEP" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CEP</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{7,8}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TprocConsCCC">
+		<xs:annotation>
+			<xs:documentation>Tipo Pedido de Consulta de Cadastro de contribuintes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="consCCC" type="TconsCCC"/>
+			<xs:element name="retConsCCC" type="TretConsCCC"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerConsCCC" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="TVerConsCCC">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão do Leiaute do Download do Cadastro Centralizado de Contribuintes</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="1\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

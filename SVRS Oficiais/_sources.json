@@ -1,0 +1,292 @@
+[
+  {
+    "model": "BPe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Bpe/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_BPe_100b_NT2026.002%20RTC_1.01.zip",
+    "archive": "SVRS Oficiais\\BPe\\PL_BPe_100b_NT2026.002 RTC_1.01.zip",
+    "folder": "SVRS Oficiais\\BPe\\PL_BPe_100b_NT2026.002 RTC_1.01",
+    "sha256": "a06daec0a2fff38acd0b115d7ef5f9e4efcc10ae0d55307b6c73e1417d8f662e",
+    "xsd_count": 27,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "CTe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Cte/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_CTe_400_NT2026.001%20RTC_VincPgto_1.01c_corr_2.zip",
+    "archive": "SVRS Oficiais\\CTe\\PL_CTe_400_NT2026.001 RTC_VincPgto_1.01c_corr_2.zip",
+    "folder": "SVRS Oficiais\\CTe\\PL_CTe_400_NT2026.001 RTC_VincPgto_1.01c_corr_2",
+    "sha256": "588751bb553014f32a570e7d1b2958b8208d2aa8ad55dd95404c3517d1187ba5",
+    "xsd_count": 46,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "CTe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Cte/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_CTe_400_NT2026.002%20RTC_1.01_corr_2.zip",
+    "archive": "SVRS Oficiais\\CTe\\PL_CTe_400_NT2026.002 RTC_1.01_corr_2.zip",
+    "folder": "SVRS Oficiais\\CTe\\PL_CTe_400_NT2026.002 RTC_1.01_corr_2",
+    "sha256": "e17c24816d3483e472e5c0750e99fa40d6c17af38f50c153fb79b66cfd79942c",
+    "xsd_count": 46,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "MDFe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Mdfe/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_MDFe_300b_NT012025_1.04.zip",
+    "archive": "SVRS Oficiais\\MDFe\\PL_MDFe_300b_NT012025_1.04.zip",
+    "folder": "SVRS Oficiais\\MDFe\\PL_MDFe_300b_NT012025_1.04",
+    "sha256": "fc53c880bd757d5b03b79de15dd7687259dfbfa38fed85e9ebb9c638b93854cc",
+    "xsd_count": 41,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NF3e",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nf3e/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_NF3E_1.00a_NT2026.002%20RTC_1.01.zip",
+    "archive": "SVRS Oficiais\\NF3e\\PL_NF3E_1.00a_NT2026.002 RTC_1.01.zip",
+    "folder": "SVRS Oficiais\\NF3e\\PL_NF3E_1.00a_NT2026.002 RTC_1.01",
+    "sha256": "f49f717af7c6e0529780b16d9ac1deb8cefe5b5874a7747f7ef104439fdc380c",
+    "xsd_count": 23,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFCom",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfcom/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_NFCOM_1.00_NT2026.002%20RTC_1.01.zip",
+    "archive": "SVRS Oficiais\\NFCom\\PL_NFCOM_1.00_NT2026.002 RTC_1.01.zip",
+    "folder": "SVRS Oficiais\\NFCom\\PL_NFCOM_1.00_NT2026.002 RTC_1.01",
+    "sha256": "87f0cc6c30a2d724756bbd8b31ce813ef715d1e8f1b2e8bc4cd87f9c75cd0ed2",
+    "xsd_count": 20,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFe-NFCe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfe/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_010b_NT2025_002_v1.30.zip",
+    "archive": "SVRS Oficiais\\NFe-NFCe\\PL_010b_NT2025_002_v1.30.zip",
+    "folder": "SVRS Oficiais\\NFe-NFCe\\PL_010b_NT2025_002_v1.30",
+    "sha256": "2deaa8d430d0acb47deae06b9b6d1202dbb436baf3d2d3aa834a534a3d6fa1b8",
+    "xsd_count": 5,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFe-NFCe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfe/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=Eventos_RTC.zip",
+    "archive": "SVRS Oficiais\\NFe-NFCe\\Eventos_RTC.zip",
+    "folder": "SVRS Oficiais\\NFe-NFCe\\Eventos_RTC",
+    "sha256": "b31499ba7e8665ae331d4d7a86b5db37825f1dfdc4672e452391bb17069caca6",
+    "xsd_count": 18,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFe-NFCe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfe/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=Schema_Evento_211110_NT2025.002%20v1.40.zip",
+    "archive": "SVRS Oficiais\\NFe-NFCe\\Schema_Evento_211110_NT2025.002 v1.40.zip",
+    "folder": "SVRS Oficiais\\NFe-NFCe\\Schema_Evento_211110_NT2025.002 v1.40",
+    "sha256": "f07354d4c273d5bac6ebf541d5cfde4ba03aee51e48be7b585de615d2e204401",
+    "xsd_count": 1,
+    "supplements": [
+      {
+        "source_package": "Eventos_RTC.zip",
+        "source_file": "SVRS Oficiais\\NFe-NFCe\\Eventos_RTC\\Eventos_RTC\\tiposBasico_v1.03.xsd",
+        "target_file": "SVRS Oficiais\\NFe-NFCe\\Schema_Evento_211110_NT2025.002 v1.40\\tiposBasico_v1.03.xsd"
+      }
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "ONE",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/One/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_ONE_v200e_1.00.zip",
+    "archive": "SVRS Oficiais\\ONE\\PL_ONE_v200e_1.00.zip",
+    "folder": "SVRS Oficiais\\ONE\\PL_ONE_v200e_1.00",
+    "sha256": "51dd5cb77b14acfa91f9e775f9b7cb07b37ad9aa5d5c5abd9ffd6f4549401666",
+    "xsd_count": 13,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "DCe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Dce/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_DCe_v1.00a_NT2024.001v1.00.zip",
+    "archive": "SVRS Oficiais\\DCe\\PL_DCe_v1.00a_NT2024.001v1.00.zip",
+    "folder": "SVRS Oficiais\\DCe\\PL_DCe_v1.00a_NT2024.001v1.00",
+    "sha256": "9530d6c15f44de07cf4acc18566196a381f11051b59af3c2e36e3c8473701a6a",
+    "xsd_count": 22,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "DCe",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Dce/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_DCe_100_BT2024.001_SVD_v1.00.zip",
+    "archive": "SVRS Oficiais\\DCe\\PL_DCe_100_BT2024.001_SVD_v1.00.zip",
+    "folder": "SVRS Oficiais\\DCe\\PL_DCe_100_BT2024.001_SVD_v1.00",
+    "sha256": "0249cbe22b37468babda8ab8e30e9a1b6c9fff22b7b0c41ed5de22745f443ad7",
+    "xsd_count": 6,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "PES",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Pes/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_DFePAA_102.zip",
+    "archive": "SVRS Oficiais\\PES\\PL_DFePAA_102.zip",
+    "folder": "SVRS Oficiais\\PES\\PL_DFePAA_102",
+    "sha256": "65f974d5e630eff81864ebca8d219fb8a92050456235815b30656510b83fc9f7",
+    "xsd_count": 7,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFAg",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfag/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_NFAg_NT2026.002%20RTC_1.01.zip",
+    "archive": "SVRS Oficiais\\NFAg\\PL_NFAg_NT2026.002 RTC_1.01.zip",
+    "folder": "SVRS Oficiais\\NFAg\\PL_NFAg_NT2026.002 RTC_1.01",
+    "sha256": "1c06ccd79c2f2fbadfa8aedbc2390c4963052885f3ce7336cf9ccc8ffca6e28d",
+    "xsd_count": 21,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFeABI",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfabi/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_NFeABI_1.00.zip",
+    "archive": "SVRS Oficiais\\NFeABI\\PL_NFeABI_1.00.zip",
+    "folder": "SVRS Oficiais\\NFeABI\\PL_NFeABI_1.00",
+    "sha256": "8c1a33ef15b353b2a552f3da99fc9d4acbea1ff01029a9452e118e75847e4e26",
+    "xsd_count": 20,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFGas",
+    "kind": "package",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Nfgas/DownloadArquivoEstatico/?tipoArquivo=2&nomeArquivo=PL_NFGas_NT2026.002%20RTC_1.01.zip",
+    "archive": "SVRS Oficiais\\NFGas\\PL_NFGas_NT2026.002 RTC_1.01.zip",
+    "folder": "SVRS Oficiais\\NFGas\\PL_NFGas_NT2026.002 RTC_1.01",
+    "sha256": "8d751ba15135a1a755732e8492c37d0f7b44c4465af1f37438f687d1fd4d6ca2",
+    "xsd_count": 20,
+    "supplements": [],
+    "status": "downloaded"
+  },
+  {
+    "model": "BPe",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRBPE/",
+    "folder": "SVRS Oficiais\\BPe\\operational-PRBPE",
+    "xsd_count": 35,
+    "sha256": "837f85742101b8efd24005b1024f2007d1f4f9acbb5a3d8e96d3f0acb41e89db",
+    "roots": [
+      "bpe_v1.00.xsd",
+      "bpeTA_v1.00.xsd",
+      "bpeTM_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "CTe",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRCTE/",
+    "folder": "SVRS Oficiais\\CTe\\operational-PRCTE",
+    "xsd_count": 323,
+    "sha256": "5ad1aa16f7852ee1f9f1148c02012b194ef3fc71e2de0a34ffbe0783523a39a2",
+    "roots": [
+      "cte_v4.00.xsd",
+      "cteOS_v4.00.xsd",
+      "cteSimp_v4.00.xsd",
+      "GTVe_v4.00.xsd",
+      "cteModalAereo_v4.00.xsd",
+      "cteModalAquaviario_v4.00.xsd",
+      "cteModalDutoviario_v4.00.xsd",
+      "cteModalFerroviario_v4.00.xsd",
+      "cteModalRodoviarioOS_v4.00.xsd",
+      "cteModalRodoviario_v4.00.xsd",
+      "cteMultiModal_v4.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "NF3e",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRNF3E/",
+    "folder": "SVRS Oficiais\\NF3e\\operational-PRNF3E",
+    "xsd_count": 37,
+    "sha256": "f6031e8d3b4de043485fbb5f5362df84bd3fea49a4ad7c915da40f6c48e7b4bb",
+    "roots": [
+      "nf3e_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFCom",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRNFCOM/",
+    "folder": "SVRS Oficiais\\NFCom\\operational-PRNFCOM",
+    "xsd_count": 25,
+    "sha256": "da8bd05d68b3ebcb661f1e41df7f20e20585687d2218fea34d09e844087d7c5b",
+    "roots": [
+      "nfcom_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFAg",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRNFAG/",
+    "folder": "SVRS Oficiais\\NFAg\\operational-PRNFAG",
+    "xsd_count": 20,
+    "sha256": "f23ed515b370842d5f47bc8ce7404d105cc981151b874874f59cda5cbcd6ed0e",
+    "roots": [
+      "nfag_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFGas",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRNFGAS/",
+    "folder": "SVRS Oficiais\\NFGas\\operational-PRNFGAS",
+    "xsd_count": 20,
+    "sha256": "100a13a64569843234a4f11d72dc4818f5d5244eedeee828dae27511d82454f8",
+    "roots": [
+      "nfgas_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "NFe-NFCe",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRNFE/",
+    "folder": "SVRS Oficiais\\NFe-NFCe\\operational-PRNFE",
+    "xsd_count": 268,
+    "sha256": "2fa2ec582e8c5a589cd966de3b29cf3159ea09218e904acd285c402d654bf8b9",
+    "roots": [
+      "nfe_v4.00.xsd"
+    ],
+    "status": "downloaded"
+  },
+  {
+    "model": "DCe",
+    "kind": "operational",
+    "source": "https://dfe-portal.svrs.rs.gov.br/Schemas/PRDCE/",
+    "folder": "SVRS Oficiais\\DCe\\operational-PRDCE",
+    "xsd_count": 17,
+    "sha256": "243cbdb39e889dd3f2569567a35fd2c7a3c906012771585e6684bc514444c31e",
+    "roots": [
+      "dce_v1.00.xsd"
+    ],
+    "status": "downloaded"
+  }
+]

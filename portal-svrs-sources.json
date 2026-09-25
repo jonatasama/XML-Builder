@@ -1,0 +1,48 @@
+{
+  "portal": "https://dfe-portal.svrs.rs.gov.br/",
+  "checked_on": "2026-09-24",
+  "packages": [
+    {"model": "BPe", "route": "Bpe", "file": "PL_BPe_100b_NT2026.002 RTC_1.01.zip"},
+    {"model": "CTe", "route": "Cte", "file": "PL_CTe_400_NT2026.001 RTC_VincPgto_1.01c_corr_2.zip"},
+    {"model": "CTe", "route": "Cte", "file": "PL_CTe_400_NT2026.002 RTC_1.01_corr_2.zip"},
+    {"model": "MDFe", "route": "Mdfe", "file": "PL_MDFe_300b_NT012025_1.04.zip"},
+    {"model": "NF3e", "route": "Nf3e", "file": "PL_NF3E_1.00a_NT2026.002 RTC_1.01.zip"},
+    {"model": "NFCom", "route": "Nfcom", "file": "PL_NFCOM_1.00_NT2026.002 RTC_1.01.zip"},
+    {"model": "NFe-NFCe", "route": "Nfe", "file": "PL_010b_NT2025_002_v1.30.zip"},
+    {"model": "NFe-NFCe", "route": "Nfe", "file": "Eventos_RTC.zip"},
+    {
+      "model": "NFe-NFCe",
+      "route": "Nfe",
+      "file": "Schema_Evento_211110_NT2025.002 v1.40.zip",
+      "supplements": [
+        {
+          "from_package": "Eventos_RTC.zip",
+          "path": "Eventos_RTC/tiposBasico_v1.03.xsd",
+          "target": "tiposBasico_v1.03.xsd"
+        }
+      ]
+    },
+    {"model": "ONE", "route": "One", "file": "PL_ONE_v200e_1.00.zip"},
+    {"model": "DCe", "route": "Dce", "file": "PL_DCe_v1.00a_NT2024.001v1.00.zip"},
+    {"model": "DCe", "route": "Dce", "file": "PL_DCe_100_BT2024.001_SVD_v1.00.zip"},
+    {"model": "PES", "route": "Pes", "file": "PL_DFePAA_102.zip"},
+    {"model": "NFAg", "route": "Nfag", "file": "PL_NFAg_NT2026.002 RTC_1.01.zip"},
+    {"model": "NFeABI", "route": "Nfabi", "file": "PL_NFeABI_1.00.zip"},
+    {"model": "NFGas", "route": "Nfgas", "file": "PL_NFGas_NT2026.002 RTC_1.01.zip"}
+  ],
+  "operational_directories": [
+    {"model": "BPe", "path": "PRBPE", "roots": ["bpe_v1.00.xsd", "bpeTA_v1.00.xsd", "bpeTM_v1.00.xsd"]},
+    {"model": "CTe", "path": "PRCTE", "roots": ["cte_v4.00.xsd", "cteOS_v4.00.xsd", "cteSimp_v4.00.xsd", "GTVe_v4.00.xsd", "cteModalAereo_v4.00.xsd", "cteModalAquaviario_v4.00.xsd", "cteModalDutoviario_v4.00.xsd", "cteModalFerroviario_v4.00.xsd", "cteModalRodoviarioOS_v4.00.xsd", "cteModalRodoviario_v4.00.xsd", "cteMultiModal_v4.00.xsd"]},
+    {"model": "NF3e", "path": "PRNF3E", "roots": ["nf3e_v1.00.xsd"]},
+    {"model": "NFCom", "path": "PRNFCOM", "roots": ["nfcom_v1.00.xsd"]},
+    {"model": "NFAg", "path": "PRNFAG", "roots": ["nfag_v1.00.xsd"]},
+    {"model": "NFGas", "path": "PRNFGAS", "roots": ["nfgas_v1.00.xsd"]},
+    {"model": "NFe-NFCe", "path": "PRNFE", "roots": ["nfe_v4.00.xsd"]},
+    {"model": "DCe", "path": "PRDCE", "roots": ["dce_v1.00.xsd"]}
+  ],
+  "no_document_schema": [
+    {"model": "NFF", "route": "Nff", "reason": "Portal da Nota Fiscal Fácil: não há pacote XSD próprio na página Documentos."},
+    {"model": "DIFAL", "route": "Difal", "reason": "Portal de cálculo/consulta do DIFAL: não há pacote XSD próprio na página Documentos."},
+    {"model": "CFF", "route": "Cff", "reason": "Portal Conformidade Fácil: validador e tabelas; não há pacote XSD próprio na página Documentos."}
+  ]
+}

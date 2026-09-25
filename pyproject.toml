@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nfeabi-generator"
+version = "0.1.0"
+description = "Gerador e validador XSD-first de XML da NF-e ABI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "cryptography>=46.0.0",
+    "lxml>=6.0.0",
+]
+
+[project.scripts]
+nfeabi = "nfeabi_generator.cli:main"
+xsdxml = "xsd_model_builder.cli:main"
+xsdxml-gui = "xsd_model_builder.gui:main"
+xsdxml-check = "xsd_model_builder.conformance_cli:main"
+xsdxml-portal = "xsd_model_builder.portal_conformance:main"
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

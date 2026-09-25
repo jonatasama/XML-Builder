@@ -1,0 +1,230 @@
+{
+  "NFeABI": {
+    "infNFeABI": {
+      "@versao": "1.00",
+      "ide": {
+        "cUF": "42",
+        "cNF": "7651066",
+        "mod": "77",
+        "serie": "901",
+        "nNF": "9",
+        "dhEmi": "2026-09-15T14:02:06-03:00",
+        "tpNF": "1",
+        "tpImp": "1",
+        "gModNat": {
+          "modOper": "01",
+          "natOper": "01",
+          "detOper": "02"
+        },
+        "tpEmis": "1",
+        "nSiteAutoriz": "0",
+        "tpAmb": "1",
+        "finNFe": "1",
+        "procEmi": "0",
+        "verProc": "nfeabi-generator-0.1"
+      },
+      "emit": {
+        "CNPJ": "84683408000103",
+        "xNome": "EMITENTE SINTETICO - NAO TRANSMITIR",
+        "xFant": "EMITENTE ABI TESTE",
+        "enderEmit": {
+          "xLgr": "Rua Arno Waldemar Dohler",
+          "nro": "145",
+          "xCpl": "Unidade de teste",
+          "xBairro": "Zona Industrial Norte",
+          "cMun": "4209102",
+          "xMun": "Joinville",
+          "UF": "SC",
+          "CEP": "89219902",
+          "cPais": "1058",
+          "xPais": "Brasil",
+          "fone": "4730000000"
+        },
+        "tpEmit": "01"
+      },
+      "transmit": [
+        {
+          "@nTransmit": "1",
+          "indDeclarante": "1",
+          "CPF": "58642028351",
+          "xNome": "TRANSMITENTE SINTETICO - NAO TRANSMITIR",
+          "enderTransmit": {
+            "xLgr": "Rua de Teste",
+            "nro": "1",
+            "xCpl": "Sala 101",
+            "xBairro": "Centro",
+            "cMun": "3304557",
+            "xMun": "Rio de Janeiro",
+            "UF": "RJ",
+            "CEP": "20010000",
+            "cPais": "1058",
+            "xPais": "Brasil",
+            "fone": "2130000000"
+          },
+          "pTransIndiv": "100.0000",
+          "indContrib": "0"
+        }
+      ],
+      "adquirente": [
+        {
+          "@nAdquir": "1",
+          "CPF": "82559486008",
+          "xNome": "ADQUIRENTE SINTETICO - NAO TRANSMITIR",
+          "enderAdquirente": {
+            "xLgr": "Rua de Teste",
+            "nro": "1",
+            "xCpl": "Apto 202",
+            "xBairro": "Centro",
+            "cMun": "3304557",
+            "xMun": "Rio de Janeiro",
+            "UF": "RJ",
+            "CEP": "20010000",
+            "cPais": "1058",
+            "xPais": "Brasil",
+            "fone": "21900000000"
+          }
+        }
+      ],
+      "imovel": {
+        "tipo": "1",
+        "cadastro": {
+          "cCIB": "627997",
+          "indIPTU": "1",
+          "nIptu": "156952",
+          "indIncra": "0"
+        },
+        "espImovel": "03",
+        "enquadramento": "01",
+        "enderImovel": {
+          "xLgr": "Rua do Imovel",
+          "nro": "1",
+          "xCpl": "Lote 10",
+          "xBairro": "Centro",
+          "cMun": "3304557",
+          "xMun": "Rio de Janeiro",
+          "UF": "RJ",
+          "CEP": "20010000",
+          "cPais": "1058",
+          "xPais": "Brasil",
+          "fone": "2130000000"
+        },
+        "obsLocalImovel": "Imovel utilizado no teste estrutural completo",
+        "areaTotal": "500.00",
+        "uAreaTotal": "m2",
+        "cartorioRegistro": "Primeiro Oficio de Registro de Imoveis",
+        "matricTransc": "16182"
+      },
+      "autXML": [
+        {
+          "@nAutXML": "1",
+          "CNPJ": "18160979000120"
+        }
+      ],
+      "infOper": {
+        "pTransImovel": "100.0000",
+        "vTotalOperacao": "2000000.00",
+        "gIncorpLote": {
+          "indIncorpLote": "0"
+        },
+        "gRedAjusteImovel": {
+          "vInicial": "1160000.00",
+          "vITBI": "40000.00",
+          "vLaudemio": "0.00",
+          "vContrap": "0.00",
+          "vRedAjusteImovel": "1200000.00"
+        },
+        "indRedSocial": "1",
+        "vRedSocial": "100000.00",
+        "instrumento": {
+          "tpInstrumento": "01",
+          "dtInstrumento": "2026-08-29"
+        },
+        "indIntermedCorret": "0"
+      },
+      "gInfTrib": {
+        "IBSCBS": {
+          "CST": "200",
+          "cClassTrib": "200046",
+          "gIBSCBS": {
+            "vOperacIndiv": "2000000.00",
+            "vRedAjusteIndiv": "1200000.00",
+            "vRedSocialIndiv": "100000.00",
+            "vBC": "700000.00",
+            "gIBSUF": {
+              "pIBSUF": "0.1000",
+              "gRed": {
+                "pRedAliq": "50.0000",
+                "pAliqEfet": "0.0500"
+              },
+              "vIBSUF": "350.00"
+            },
+            "gIBSMun": {
+              "pIBSMun": "0.1000",
+              "gRed": {
+                "pRedAliq": "50.0000",
+                "pAliqEfet": "0.0500"
+              },
+              "vIBSMun": "350.00"
+            },
+            "gCBS": {
+              "pCBS": "0.9000",
+              "gRed": {
+                "pRedAliq": "50.0000",
+                "pAliqEfet": "0.4500"
+              },
+              "vCBS": "3150.00"
+            }
+          }
+        }
+      },
+      "pag": {
+        "detPagImovel": [
+          {
+            "@nDetPag": "1",
+            "tPag": "03",
+            "vPag": "2000000.00"
+          }
+        ]
+      },
+      "total": {
+        "vTotalOperacao": "2000000.00",
+        "vOperacIndiv": "2000000.00",
+        "tribTot": {
+          "vRedAjusteIndiv": "1200000.00",
+          "vRedSocialIndiv": "100000.00",
+          "vBC": "700000.00",
+          "vIBSUF": "350.00",
+          "vIBSMun": "350.00",
+          "vCBS": "3150.00"
+        },
+        "vNF": "2003850.00"
+      },
+      "infAdic": {
+        "infAdFisco": "Documento sintetico para validacao estrutural local",
+        "infCpl": "Modelo completo da NF-e ABI; nao transmitir",
+        "obsCont": [
+          {
+            "@xCampo": "cenario",
+            "xTexto": "Operacao imobiliaria completa"
+          }
+        ],
+        "obsFisco": [
+          {
+            "@xCampo": "uso",
+            "xTexto": "Teste estrutural local"
+          }
+        ]
+      },
+      "infRespTec": {
+        "CNPJ": "18160979000120",
+        "xContato": "Responsavel Tecnico",
+        "email": "responsavel@example.com",
+        "fone": "3132730899"
+      }
+    },
+    "infNFeSupl": {
+      "qrCode": "https://homologacao.exemplo.invalid/nfeabi/qrcode?42260984683408000103779010000000091076510666|1|1|CONTEUDO-DEMONSTRATIVO-NAO-UTILIZAR-EM-PRODUCAO",
+      "urlChave": "https://homologacao.exemplo.invalid/nfeabi/consulta"
+    }
+  }
+}

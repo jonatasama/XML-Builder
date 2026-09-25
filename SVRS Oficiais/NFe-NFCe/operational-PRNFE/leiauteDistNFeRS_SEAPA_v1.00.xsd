@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="tiposBasico_v1.03.xsd"/>
+	<xs:simpleType name="TVerDFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão 1.00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="1\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TNSU">
+		<xs:annotation>
+			<xs:documentation>Tipo número sequencial único da UF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[0-9]{1,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TStatExtendido">
+		<xs:annotation>
+			<xs:documentation>Tipo Código da Mensagem enviada</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{3,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TSitNFe">
+		<xs:annotation>
+			<xs:documentation>
+				1 = Normal;
+				2 = Denegada;
+				3 = Cancelada
+		  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedInt">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TDataHoraUTC">
+		<xs:annotation>
+			<xs:documentation>Tipo Data e Hora. Formato AAAA-MM-DDThh:mm:ssTZD (UTC - Universal Coordinated Time)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}-\d{2}:\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType> 
+	<xs:complexType name="TChNatural">
+		<xs:sequence>
+			<xs:element name="mod" type="TMod">
+				<xs:annotation>
+					<xs:documentation>
+						Modelo do Documento Fiscal. 55=NF-e (fixo)
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cUF" type="TCodUfIBGE">
+				<xs:annotation>
+					<xs:documentation>
+						Código da UF Emitente da NF-e.
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="serie" type="TSerie">
+				<xs:annotation>
+					<xs:documentation>
+						Série da NF-e
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nNF" type="TNF">
+				<xs:annotation>
+					<xs:documentation>
+						Número da NF-e
+				   </xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:choice>
+				<xs:element name="CNPJ" type="TCnpj"/>
+				<xs:element name="CPF" type="TCpf"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType> 
+	<xs:complexType name="TDistNFeRS">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados da mensagem de solicitação de distribuição de XML para integração Nota Fiscal Eletrônica SEFAZ/RS e Secretaria de Agricultura Estadual. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>
+						Identificação do Ambiente:
+						1 - Produção
+						2 - Homologação
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão da aplicação que solicitou distribuição</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cUF" type="TCodUfIBGE" fixed="43">
+				<xs:annotation>
+					<xs:documentation>
+						Código da UF. Fixo=43.
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:choice>
+				<xs:element name="chAcesso" type="TChNFe"/>
+				<xs:element name="chNatural" type="TChNatural"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe" use="required"/>
+	</xs:complexType> 
+	<xs:complexType name="TRetDistNFeRS">
+		<xs:annotation>
+			<xs:documentation> Schema XML de validação da área de dados da mensagem de retorno de DF-e para integração Nota Fiscal Eletrônica SEFAZ/RS e Secretaria da Agricultura Estadual.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>
+						Identificação do Ambiente:
+						1 - Produção
+						2 - Homologação
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão da aplicação do serviço de distribuição (SVRS).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStatExtendido">
+				<xs:annotation>
+					<xs:documentation>
+						Código do status da resposta
+				   </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição literal do status da resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dhResp" type="TDataHoraUTC">
+				<xs:annotation>
+					<xs:documentation>
+						Data e Hora de resposta da solicitação de distribuição
+						Formato AAAA-MM-DDThh:mm:ssTZD (UTC - Universal Coordinated Time)
+				  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cUF" type="TCodUfIBGE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Código da UF. Fixo=43.
+				  </xs:documentation>
+				</xs:annotation>
+			</xs:element>  
+			<xs:element name="chAcesso" type="TChNFe" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Chave de Acesso informada.
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="chNatural" type="TChNatural" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+						Chave Natural informada.
+					  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sitNFe" type="TSitNFe">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element> 
+			<xs:element name="loteDistComp" type="xs:base64Binary" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe" use="required"/>
+	</xs:complexType> 
+	<xs:complexType name="TLoteDistNFeRS">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados descompactada do grupo TRetDistNFeRS.loteDistComp</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="50">
+			<xs:element name="proc">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:any processContents="skip" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>informação do proc</xs:documentation>
+							</xs:annotation>
+						</xs:any>
+					</xs:sequence>
+					<xs:attribute name="NSU" type="TNSU" use="required">
+						<xs:annotation>
+							<xs:documentation>NSU do documento na base de dados da SEFAZ-RS</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="chAcesso" type="TChNFe" use="required">
+						<xs:annotation>
+							<xs:documentation>
+								Chave de Acesso do documento
+							 </xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="schema" type="TString" use="required">
+						<xs:annotation>
+							<xs:documentation>Identificação do Schema XML do documento distribuído, utilizado para validação do proc. Ex. procNFe_v2.00.xsd, procCancNFe_v1.07.xsd, procInutNFe_v1.07.xsd, etc.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe" use="required"/>
+	</xs:complexType>
+</xs:schema>

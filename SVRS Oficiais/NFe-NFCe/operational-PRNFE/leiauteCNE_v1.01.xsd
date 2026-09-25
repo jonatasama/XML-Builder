@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="tiposBasico_v1.02.xsd"/>
+	<xs:complexType name="TEnvCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Envio de atualização de Cadadastro de Emissor de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente: 1- Produção / 2- Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>versão da Aplicação Solicitante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UF" type="TUf">
+				<xs:annotation>
+					<xs:documentation>sigla da UF onde o emissor está autorizado a emitir DF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJ" type="TCnpj">
+				<xs:annotation>
+					<xs:documentation>CNPJ do Emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IE">
+				<xs:annotation>
+					<xs:documentation>IE do emissor</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TIe">
+						<xs:pattern value="[0-9]{2,14}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xNome">
+				<xs:annotation>
+					<xs:documentation>Razão Social ou Nome do Emitente</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="indObrig">
+				<xs:annotation>
+					<xs:documentation>Indicador de obrigatoriedade de emissor de DF-e:
+1 – credenciado;
+2 – credenciado com obrigatoriedade para todas as operações;
+3 – credenciado com obrigatoriedade parcial.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tpDFe">
+				<xs:annotation>
+					<xs:documentation>Tipo Documento fiscal eletronico autorizado:
+55 - NF-e;
+57 - CT-e;
+99 - uso exclusivo do Fisco para inclusão de
+qualquer órgão público no cadastro de
+emissores de DFe com objetivo de permitir o
+acesso ao WS - CadConsultaCadastro de
+Consulta Cadastro de Contribuintes do ICMS
+de qualquer unidade federada.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="55"/>
+						<xs:enumeration value="57"/>
+						<xs:enumeration value="99"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dVigObrig" type="TData" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data de início de vigência da obrigatoriedade.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="evento">
+				<xs:annotation>
+					<xs:documentation>evento - Informa o tipo da atualização:
+1 - credenciamento;
+2 - suspensão do credenciamento;
+3 - reativação do credenciamento;
+4 - descredenciamento;
+5 – alteração de credenciamento.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dEvento" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data do evento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xObs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Observações complementares</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCNE" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TCNERes">
+		<xs:annotation>
+			<xs:documentation>Tipo Cadadastro de Emissor de DF-e Resumo, somente emissores credenciados e órgãos convenidados em situação regular</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CNPJ" type="TCnpj" maxOccurs="500">
+				<xs:annotation>
+					<xs:documentation>CNPJ do Emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSUCadCNE">
+				<xs:annotation>
+					<xs:documentation>Número do último NSUCadCNE retornado (Chave de Continuação da consulta resumida)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{1,15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Cadadastro de Emissor de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UF" type="TUf">
+				<xs:annotation>
+					<xs:documentation>sigla da UF onde o emissor está autorizado a emitir DF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJ" type="TCnpj">
+				<xs:annotation>
+					<xs:documentation>CNPJ do Emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IE">
+				<xs:annotation>
+					<xs:documentation>IE do emissor</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TIe">
+						<xs:pattern value="[0-9]{2,14}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xNome">
+				<xs:annotation>
+					<xs:documentation>Razão Social ou Nome do Emitente</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="indObrig">
+				<xs:annotation>
+					<xs:documentation>Indicador de obrigatoriedade de emissor de DF-e:
+1 – credenciado;
+2 – credenciado com obrigatoriedade para todas as operações;
+3 – credenciado com obrigatoriedade parcial.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tpDFe">
+				<xs:annotation>
+					<xs:documentation>Tipo de Documento fiscal eletrônico autorizado:
+55 - NF-e;
+57 - CT-e;
+99 - uso exclusivo do Fisco para inclusão de qualquer órgão público no cadastro de emissores de DF-e com objetivo de permitir o acesso ao WS - CadConsultaCadastro de
+Consulta Cadastro de Contribuintes do ICMS de qualquer unidade federada.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="55"/>
+						<xs:enumeration value="57"/>
+						<xs:enumeration value="99"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dVigObrig" type="TData" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data de início de vigência da obrigatoriedade.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sitCred">
+				<xs:annotation>
+					<xs:documentation>Situação de credenciamento do emissor:
+A – Ativo;
+S – Suspenso;
+I – Inativo.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="A"/>
+						<xs:enumeration value="S"/>
+						<xs:enumeration value="I"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dEvento" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data do evento</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xObs">
+				<xs:annotation>
+					<xs:documentation>Observações complementares</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dIncCNE" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data de inclusão do emissor no Cadastro Nacional de Emissores</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSUCadCNE">
+				<xs:annotation>
+					<xs:documentation>NSU de cadastro do Emissor no CNE (Chave de continuação na consulta completa)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{1,15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dAtuCNE" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data de atualização do emissor no Cadastro Nacional de Emissores</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSUMvtoCNE">
+				<xs:annotation>
+					<xs:documentation>NSU do último movimento de atualização do CNE para o emissor</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{1,15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCNE" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetEnvCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno do Cadastro de Emissor de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente: 1- Produção / 2- Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>versão da Aplicação do AN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da Resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição do status da Resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NSUCNE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>NSUCNE - Número Sequencial Único atribuído à operação pelo AN, fornecido somente para as atualizações atendidas</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{1,15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCNE" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TConsCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Consulta Cadastro de Emissores de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente: 1- Produção / 2- Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>versão da Aplicação Solicitante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indCons">
+				<xs:annotation>
+					<xs:documentation>Indicador do escopo da consulta cadastro:
+1 – Cadastro de emissores resumido (somente CNPJ);
+2 – Cadastro de emissores completo; 
+3 - Movimento de Atualização de Cadastro ocorridas a partir do NSU informado;</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="indCompRet">
+				<xs:annotation>
+					<xs:documentation>Indicador de compactação do retorno: 0 - sem compactação / 1 - com compactação gZip</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ultNSUCNE">
+				<xs:annotation>
+					<xs:documentation>Último NSUCNE recebido, caso seja informado com zero, o AN tentará localizar o primeiro movimento do CNE </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:pattern value="[0-9]{1,15}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Filtro da consulta</xs:documentation>
+				</xs:annotation>
+				<xs:element name="UF" type="TUfEmi">
+					<xs:annotation>
+						<xs:documentation>Sigla da UF</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dAtu" type="TData">
+					<xs:annotation>
+						<xs:documentation>data de atualização do cadastro de emissor no CNE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UFdAtu" type="TUfdAtu">
+					<xs:annotation>
+						<xs:documentation>Sigla da UF e Data de atualização do cadastro de emissor no CNE</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CNPJ" type="TCnpj">
+					<xs:annotation>
+						<xs:documentation>CNPJ do Emissor</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UFIE" type="TUfIe">
+					<xs:annotation>
+						<xs:documentation>Sigla da UF e IE do emissor</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCNE" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetConsCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno da Consulta 
+Cadastro de Emissor de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente: 1- Produção / 2- Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>versão da Aplicação Solicitante</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da Resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição do status da Resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:choice>
+					<xs:element name="cadEmiComp" type="xs:base64Binary">
+						<xs:annotation>
+							<xs:documentation>Movimento do Cadastro de Emissor ou Cadastro de Emissor Resumido compactado</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CNERes" type="TCNERes">
+						<xs:annotation>
+							<xs:documentation>Cadastro de Emissor Resumido</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CNECpl">
+						<xs:annotation>
+							<xs:documentation>Grupo de Informações do Cadastro de Emissores Completo</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="emiCpl" type="TCNE" maxOccurs="500">
+									<xs:annotation>
+										<xs:documentation>Dados Completos do Emissor</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="CNEMvto">
+						<xs:annotation>
+							<xs:documentation>Grupo de Informações do movimento de atualização do Cadastro Nacional de Emissores de NF-e </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="emiMvto" maxOccurs="500">
+									<xs:annotation>
+										<xs:documentation>Movimento do Cadastro de Emissores</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="envCNE" type="TEnvCNE">
+												<xs:annotation>
+													<xs:documentation>Dados Completos do Emissor</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:sequence>
+												<xs:element name="dAtuCNE" type="TData">
+													<xs:annotation>
+														<xs:documentation>Data de atualização do movimento no Cadastro Nacional de Emissores</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="NSUMvtoCNE">
+													<xs:annotation>
+														<xs:documentation>Controle do Movimento de atualização: NSU da atualização (Chave de continuação da consulta movimento)</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:token">
+															<xs:pattern value="[0-9]{1,15}"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="xAutorMvto" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>Descrição do autor do movimento (Nome ou CNPJ da SEFAZ)</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="TString">
+															<xs:minLength value="1"/>
+															<xs:maxLength value="15"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerCNE" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="TVerCNE">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão do Leiaute 1.00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="1\.01"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TUfIe">
+		<xs:sequence>
+			<xs:element name="UF" type="TUfEmi">
+				<xs:annotation>
+					<xs:documentation>Sigla da UF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IE" type="TIe">
+				<xs:annotation>
+					<xs:documentation>IE do Emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TUfdAtu">
+		<xs:sequence>
+			<xs:element name="UF" type="TUfEmi">
+				<xs:annotation>
+					<xs:documentation>Sigla da UF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dAtu" type="TData">
+				<xs:annotation>
+					<xs:documentation>Data de atualização do cadastro de emissor no CNE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TEmiMvto">
+		<xs:sequence>
+			<xs:element name="envCNE" type="TEnvCNE">
+				<xs:annotation>
+					<xs:documentation>Movimento do Cadastro de Emissores</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

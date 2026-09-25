@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="leiauteDistNFeRS_SEAPA_v1.00.xsd"/>
+	<xs:element name="distNFeRS" type="TDistNFeRS">
+		<xs:annotation>
+			<xs:documentation>
+			Os documentos eletrônicos autorizados pela SEFAZ-RS, assim como os documentos autorizados por outras UF com destino ao RS, ficarão disponíveis para download para o Requisitante, por um período de tempo determinado.
+			A SEFAZ-RS irá disponibilizar um serviço (Web Service) com a funcionalidade de download destes documentos para uma determinada Chave de Acesso, ou Chave Natural (Modelo, UF, CNPJ, Série e Número), informada. O Requisitante deverá ser identificado através do seu Certificado Digital e poderá consultar os documentos existentes em banco de dados da SEFAZ-RS, conforme regras definidas neste documento.
+
+			Os documentos (arquivo XML) a serem disponibilizados para a chave informada são:
+			-	Arquivo XML da Nota Fiscal Eletrônica;
+			-	Arquivo XML do Evento de Cancelamento (tpEvento=110111);
+			-	Arquivo XML do Evento de Carta de Correção Eletrônica (tpEvento=110110).
+      </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

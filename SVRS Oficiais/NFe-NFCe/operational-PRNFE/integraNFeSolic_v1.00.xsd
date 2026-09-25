@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfe">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
+	<xs:element name="ultNSU">
+		<xs:simpleType>
+			<xs:restriction base="xs:int"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tpDoctos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tpDocto" maxOccurs="4"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tpDocto">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="TtpDocto">
+					<xs:attribute name="deneg">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="S"/>
+								<xs:enumeration value="N"/>
+								</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+ 		   </xs:simpleContent>		
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="TtpDocto">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+				<xs:enumeration value="CANC"/>
+				<xs:enumeration value="NFE"/>
+				<xs:enumeration value="INUT"/>
+				<xs:enumeration value="EVT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="origEmit">
+		<xs:simpleType>
+			<xs:restriction base="xs:byte">
+				<xs:enumeration value="1"/>
+				<xs:enumeration value="2"/>
+				<xs:enumeration value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="tpEvento">
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:enumeration value="110100"/> 
+				<xs:enumeration value="110101" /> 
+				<xs:enumeration value="110111" /> 
+				<xs:enumeration value="110110" /> 
+				<xs:enumeration value="110120" /> 
+				<xs:enumeration value="210200" /> 
+				<xs:enumeration value="210220" /> 
+				<xs:enumeration value="210240" /> 
+				<xs:enumeration value="220200" /> 
+				<xs:enumeration value="220220" /> 
+				<xs:enumeration value="220240" /> 
+				<xs:enumeration value="310220" /> 
+				<xs:enumeration value="431111" /> 
+				<xs:enumeration value="430112" /> 
+				<xs:enumeration value="431100" /> 
+				<xs:enumeration value="430400" /> 
+				<xs:enumeration value="430420" /> 
+				<xs:enumeration value="430430" /> 
+				<xs:enumeration value="430440" /> 
+				<xs:enumeration value="430450" /> 
+				<xs:enumeration value="590500" /> 
+				<xs:enumeration value="590510" /> 
+				<xs:enumeration value="590520" /> 
+				<xs:enumeration value="610600" /> 
+				<xs:enumeration value="630600" /> 
+				<xs:enumeration value="610620" /> 
+				<xs:enumeration value="630620" /> 
+				<xs:enumeration value="690630" /> 
+				<xs:enumeration value="630640" /> 
+				<xs:enumeration value="630660" /> 
+				<xs:enumeration value="630680" /> 
+				<xs:enumeration value="790700" /> 
+				<xs:enumeration value="790720" /> 
+				<xs:enumeration value="790730" /> 
+				<xs:enumeration value="790740" /> 
+				<xs:enumeration value="980800" /> 
+				<xs:enumeration value="980810" /> 
+				<xs:enumeration value="990900" /> 
+				<xs:enumeration value="990910" /> 
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>		
+	<xs:element name="solic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="sistSolic"/>
+				<xs:element ref="ultNSU"/>
+				<xs:element ref="qtdDocto"/>
+				<xs:element ref="origEmit" minOccurs="0"/>
+				<xs:element ref="tpDoctos" minOccurs="0"/>
+				<xs:element ref="dthSolic"/>
+				<xs:element ref="tpEvento" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Id" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sistSolic">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="PRN"/>
+				<xs:enumeration value="DETRAN"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="qtdDocto">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="1"/>
+				<xs:maxInclusive value="200"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="integraNFeSolic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="solic"/>
+				<xs:element ref="ds:Signature"/>
+			</xs:sequence>
+			<xs:attribute name="versao" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:enumeration value="1.0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dthSolic">
+		<xs:simpleType>
+			<xs:restriction base="xs:dateTime"/>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

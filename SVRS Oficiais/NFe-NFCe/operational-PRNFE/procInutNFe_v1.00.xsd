@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="inutNFe_v1.05.xsd"/>
+	<xs:include schemaLocation="retInutNFe_v1.05.xsd"/>
+	<xs:element name="ProcInutNFe">
+		<xs:annotation>
+			<xs:documentation>Pedido de inutilzação de númeração de  NF-e processado</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="inutNFe"/>
+				<xs:element ref="retInutNFe"/>
+			</xs:sequence>
+			<xs:attribute name="versao" type="xs:decimal" use="required" fixed="1.00"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

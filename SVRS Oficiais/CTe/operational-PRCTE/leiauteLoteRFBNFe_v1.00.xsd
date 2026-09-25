@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/cte" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/cte" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="PL_CTe_102.xsd"/>
+	<xs:simpleType name="TVerDFe100">
+		<xs:annotation>
+			<xs:documentation> Tipo Versão</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="1\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TNSU100">
+		<xs:annotation>
+			<xs:documentation> Tipo número sequencial único do AN</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[0-9]{15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TLoteRFBNFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do lote de envio de documentos ficais eletronicos</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão da aplicação do órgão autorizador.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="loteEnvNFeComp" type="xs:base64Binary">
+					<xs:annotation>
+						<xs:documentation>Conjunto de DF-e compactado com o método indicado no indComp, deve conter as mesmas informações do grupo loteEnvNFe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="loteEnvNFe" type="TLoteEnvDFe100">
+					<xs:annotation>
+						<xs:documentation>Conjunto de DF-e enviados, a princípio, apenas será permitido o envio de documentos fiscais em vigência.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TLoteEnvDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados descompactada</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="50">
+			<xs:element name="CTe_102">
+				<xs:annotation>
+					<xs:documentation>procNFe v1.10</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cteProc" type="TProcCte102">
+							<xs:annotation>
+								<xs:documentation>NF-e processada</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Canc_101">
+				<xs:annotation>
+					<xs:documentation>procCancNFe v1.07</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="procCancCTe" type="TProcCancCTe101">
+							<xs:annotation>
+								<xs:documentation>Pedido de cancelamento de NF-e processada</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Inut_101">
+				<xs:annotation>
+					<xs:documentation>procInutNFe v1.07</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProcInutCTe" type="TProcInutCTe101">
+							<xs:annotation>
+								<xs:documentation>Pedido de inutilização de numeração de NF-e cancelado</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetLoteRFBNFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados da mensagem de retorno</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão da aplicação do AN que recebeu os documentos fiscais.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da resposta </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição literal do status da resposta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="50">
+				<xs:element name="retProcNFe">
+					<xs:annotation>
+						<xs:documentation>Retorno de processamento dos DF-e, somente é gerado se os documentos fiscais forem válidos.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nProt" type="TProt">
+								<xs:annotation>
+									<xs:documentation>Número de protocolo do DF-e processado, o campo serve para a aplicação da SEFAZ identificar os retornos.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cStat" type="TStat">
+								<xs:annotation>
+									<xs:documentation>código do status do processmaneto do DF-e</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="xMotivo" type="TMotivo">
+								<xs:annotation>
+									<xs:documentation>descrição do status do processmaneto do DF-e</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="NSU" type="TNSU100">
+								<xs:annotation>
+									<xs:documentation>número sequencial único do Ambiente Nacional</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TDistDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados da mensagem da solicitação de distribuição de DF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que solicitou a distribuição de DF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indNFe">
+				<xs:annotation>
+					<xs:documentation>Indicador de DF-e solicitados:
+0 - DF-e autorizados pela UF;
+1 - DF-e interestaduais destinados para a UF ;
+2 – DF-e autorizados pela SEFAZ Virtual ou SCAN em nome da UF;
+8 – DF-e interestaduais destinados para a UF (1) e DF-e autorizados pela SEFAZ Virtual ou SCAN em nome da UF (2);
+9 - Todos os DF-e.
+</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedInt">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="8"/>
+						<xs:enumeration value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="indCompRet">
+				<xs:annotation>
+					<xs:documentation>Indicador de Compactação da Mensagem de retorno:
+0 - sem compactação;
+1 - compactação padrão gZip</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedInt">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ultNSU" type="TNSU100">
+				<xs:annotation>
+					<xs:documentation>último NSUAN recebido, caso seja informado com zero, o AN tentará localizar o primeiro DF-e existente.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetDistDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do lote de retorno de documentos ficais eletronicos</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que atendeu a pedido de distribuição de DF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>código do status de resultado da pesquisa</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>descrição do resultado do pesquisa </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ultNSU" type="TNSU100" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>último NSU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="loteDistNFeComp" type="xs:base64Binary"/>
+				<xs:element name="loteDistNFe" type="TLoteDistDFe100"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TLoteDistDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados descompactada</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="50">
+			<xs:element name="NSU" type="TNSU100">
+				<xs:annotation>
+					<xs:documentation>número sequencial único do Ambiente Nacional</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="CTe_v102">
+					<xs:annotation>
+						<xs:documentation>procNFe v1.10</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="cteProc" type="TProcCte102">
+								<xs:annotation>
+									<xs:documentation>NF-e Processada</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Canc_v101">
+					<xs:annotation>
+						<xs:documentation>procCancNFe v1.00</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="procCancCTe" type="TProcCancCTe101">
+								<xs:annotation>
+									<xs:documentation>Pedido de Cancelamento de NF-e processado</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Inut_v101">
+					<xs:annotation>
+						<xs:documentation>procInutNFe v1.07</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ProcInutCte" type="TProcInutCTe101">
+								<xs:annotation>
+									<xs:documentation>Pedido de Inutilização de Numeração de NF-e processada</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TConsProtFalDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dados da mensagem de consulta protocolos faltantes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que gerou a consulta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nProtIni" type="TProt">
+				<xs:annotation>
+					<xs:documentation>número do protocolo inicial</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetConsProtFalDFe100">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação da área de dos da mensagem de retorno da consulta protocolos faltantes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que atendeu a consulta</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>código do status de resultado da pesquisa</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>descrição do resultado do pesquisa </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nProtPesq" type="TProt">
+				<xs:annotation>
+					<xs:documentation>número do último protocolo pesquisado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prot" minOccurs="0" maxOccurs="1000">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nProtIni" type="TProt">
+							<xs:annotation>
+								<xs:documentation>número do protocolo inicial</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="nProtFim" type="TProt">
+							<xs:annotation>
+								<xs:documentation>número do protocolo final</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerDFe100" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="tiposBasico_v1.03.xsd"/>
+	<xs:element name="detEvento">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do evento de Recebível em Avaliação (900110)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="descEvento">
+					<xs:annotation>
+						<xs:documentation>Descrição do Evento - "Recebível em Avaliação"</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="TString">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="Recebível em Avaliação"/>
+							<xs:enumeration value="Recebivel em Avaliacao"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="cOrgaoAutor">
+					<xs:annotation>
+						<xs:documentation>Código do Órgão Autor do Evento. Utilizar a Tabela do IBGE extendida. Neste caso, informar 94 (SVBA).</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="94"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="tpAutor">
+					<xs:annotation>
+						<xs:documentation>Tipo do Órgão Autor do Evento. Neste caso, informar 5 (Fisco).
+Outros valores: 1=Empresa Emitente, 2=Empresa destinatária; 3=Empresa; 5=Fisco; 6=RFB; 9=Outros Órgãos;</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="verAplic" type="TVerAplic">
+					<xs:annotation>
+						<xs:documentation>Versão do aplicativo do Autor do Evento.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="idOperPLAC">
+					<xs:simpleType>
+						<xs:annotation>
+							<xs:documentation>Número de identificação da operação para a PLAC.</xs:documentation>
+						</xs:annotation>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:pattern value="[0-9]{15}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="IndDEAutenticada">
+					<xs:annotation>
+						<xs:documentation>Indicador de EF de D-e Autenticada na PLAC</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="0"/>
+							<xs:enumeration value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="UFDest" type="TUf">
+					<xs:annotation>
+						<xs:documentation>Sigla da UF de destino da NF-e. Informar “EX” no caso de operação com o Exterior.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="CNPJDest" type="TCnpj">
+						<xs:annotation>
+							<xs:documentation>Número do CNPJ do emitente</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="CPFDest" type="TCpf">
+						<xs:annotation>
+							<xs:documentation>Número do CPF do emitente</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="CNPJESF" type="TCnpj">
+					<xs:annotation>
+						<xs:documentation>CNPJ da empresa do segmento financeiro (ESF)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="xNomeESF">
+					<xs:annotation>
+						<xs:documentation>Nome da empresa do segmento financeiro</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="TString">
+							<xs:maxLength value="60"/>
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="gParcela" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Grupo de informações das parcelas</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="nParcela">
+								<xs:annotation>
+									<xs:documentation>Número da Parcela</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="TString">
+										<xs:whiteSpace value="preserve"/>
+										<xs:pattern value="[0-9]{3}"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="dVenc" type="TData">
+								<xs:annotation>
+									<xs:documentation>Data de Vencimento. Formato: “AAAA-MM-DD”.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="vParcela" type="TDec_1302">
+								<xs:annotation>
+									<xs:documentation>Valor da Parcela</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="xInforme" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Informações adicionais do produto (norma referenciada, informações complementares, etc)</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="TString">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="500"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:sequence minOccurs="0">
+					<xs:element name="CNPJESFDest" type="TCnpj">
+						<xs:annotation>
+							<xs:documentation>CNPJ da ESF de destino (caso de transferência de Fat-e)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="xNomeESFDest" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Nome (Razão Social) da ESF de destino (caso de transferência de Fat-e)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:sequence>
+			<xs:attribute name="versao" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+						<xs:enumeration value="1.00"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

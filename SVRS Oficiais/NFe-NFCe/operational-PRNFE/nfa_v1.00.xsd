@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="NFA">
+		<xs:annotation>
+			<xs:documentation>Dados do Emitente da Nota Fiscal Avulsa Eletrônica</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cStat" type="TStat">
+					<xs:annotation>
+						<xs:documentation>Código do status da mensagem enviada.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="xMotivo" type="TMotivo">
+					<xs:annotation>
+						<xs:documentation>Descrição literal do status do usuário</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ide" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Dados gerais do login</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="tpAmb" type="TAmb">
+								<xs:annotation>
+									<xs:documentation>Identificação do Ambiente: 1 - Produção, 2 - Homologação</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cUF" type="TCodUfIBGE">
+								<xs:annotation>
+									<xs:documentation>Código da UF da SEFAZ de origem. Utilizar a Tabela do IBGE.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="cNF" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Código numérico que compõe a Chave de Acesso.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:whiteSpace value="preserve"/>
+										<xs:pattern value="[0-9]{8}"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="iNFAUnica" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Indica se o Usuário pode comandar somente uma NFA por sessão ou se pode comandar várias NFA; 0=Várias NFA por sessão (default); 1=Uma única NFA</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:boolean" />
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="usuario" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Identificação do Usuário que está solicitando login</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice>
+											<xs:element name="CNPJ" type="TCnpj">
+												<xs:annotation>
+													<xs:documentation>Número do CNPJ do Usuário</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="CPF" type="TCpf">
+												<xs:annotation>
+													<xs:documentation>Número do CPF do Usuário</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:choice>
+										<xs:element name="xNome">
+											<xs:annotation>
+												<xs:documentation>Nome do Usuário</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="TString">
+													<xs:maxLength value="60"/>
+													<xs:minLength value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="emit">
+								<xs:annotation>
+									<xs:documentation>Identificação do emitente</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="IE" type="TIe">
+											<xs:annotation>
+												<xs:documentation>Inscrição Estadual</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:choice>
+											<xs:element name="CNPJ" type="TCnpj">
+												<xs:annotation>
+													<xs:documentation>Número do CNPJ do emitente</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="CPF" type="TCpf">
+												<xs:annotation>
+													<xs:documentation>Número do CPF do emitente</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:choice>
+										<xs:element name="xNome">
+											<xs:annotation>
+												<xs:documentation>Razão Social ou Nome do emitente</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="TString">
+													<xs:maxLength value="60"/>
+													<xs:minLength value="2"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="xFant" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Nome fantasia</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="TString">
+													<xs:maxLength value="60"/>
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CRT">
+											<xs:annotation>
+												<xs:documentation>Código de Regime Tributário. 
+												Este campo será obrigatoriamente preenchido com:
+												1 – Simples Nacional;
+												2 – Simples Nacional – excesso de sublimite de receita bruta;
+												3 – Regime Normal. (v2.0).
+												</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:whiteSpace value="preserve"/>
+													<xs:enumeration value="1"/>
+													<xs:enumeration value="2"/>
+													<xs:enumeration value="3"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="enderEmit" type="TEnderEmi">
+											<xs:annotation>
+												<xs:documentation>Endereço do emitente</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="versao" type="TVerNFAe" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TEnderEmi">
+		<xs:annotation>
+			<xs:documentation>Tipo Dados do Endereço do Emitente</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="xLgr">
+				<xs:annotation>
+					<xs:documentation>Logradouro</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nro">
+				<xs:annotation>
+					<xs:documentation>Número</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xCpl" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Complemento</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="xBairro">
+				<xs:annotation>
+					<xs:documentation>Bairro</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="TString">
+						<xs:maxLength value="60"/>
+						<xs:minLength value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="cMun" type="TCodMunIBGE">
+				<xs:annotation>
+					<xs:documentation>Código do município (utilizar a tabela do IBGE).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CEP">
+				<xs:annotation>
+					<xs:documentation>CEP</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+						<xs:pattern value="[0-9]{8}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="fone" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Preencher com Código DDD + número do telefone</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="preserve"/>
+						<xs:pattern value="[0-9]{6,14}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="TCodUfIBGE">
+		<xs:annotation>
+			<xs:documentation>Tipo Código da UF da tabela do IBGE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="12"/>
+			<xs:enumeration value="13"/>
+			<xs:enumeration value="14"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="16"/>
+			<xs:enumeration value="17"/>
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="22"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="24"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="26"/>
+			<xs:enumeration value="27"/>
+			<xs:enumeration value="28"/>
+			<xs:enumeration value="29"/>
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="32"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="41"/>
+			<xs:enumeration value="42"/>
+			<xs:enumeration value="43"/>
+			<xs:enumeration value="50"/>
+			<xs:enumeration value="51"/>
+			<xs:enumeration value="52"/>
+			<xs:enumeration value="53"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TCodMunIBGE">
+		<xs:annotation>
+			<xs:documentation>Tipo Código do Município da tabela do IBGE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TCnpj">
+		<xs:annotation>
+			<xs:documentation>Tipo Número do CNPJ</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TCpf">
+		<xs:annotation>
+			<xs:documentation>Tipo Número do CPF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TIe">
+		<xs:annotation>
+			<xs:documentation>Tipo Inscrição Estadual do Emitente</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{2,14}|ISENTO"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TString">
+		<xs:annotation>
+			<xs:documentation> Tipo string genérico</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[!-ÿ]{1}[ -ÿ]{0,}[!-ÿ]{1}|[!-ÿ]{1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TVerNFAe">
+		<xs:annotation>
+			<xs:documentation> Tipo Versão da NFA-e - 1.00</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="1\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TStat">
+		<xs:annotation>
+			<xs:documentation>Tipo Código da Mensagem enviada</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="[0-9]{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TMotivo">
+		<xs:annotation>
+			<xs:documentation>Tipo Motivo</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="TString">
+			<xs:maxLength value="255"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TAmb">
+		<xs:annotation>
+			<xs:documentation>Tipo Ambiente</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

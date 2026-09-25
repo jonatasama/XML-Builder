@@ -1,0 +1,160 @@
+{
+  "NFeABI": {
+    "infNFeABI": {
+      "@versao": "1.00",
+      "ide": {
+        "cUF": "35",
+        "cNF": "1234567",
+        "mod": "77",
+        "serie": "1",
+        "nNF": "1",
+        "dhEmi": "2026-09-24T10:00:00-03:00",
+        "tpNF": "0",
+        "tpImp": "1",
+        "gModNat": {
+          "modOper": "01",
+          "natOper": "01"
+        },
+        "tpEmis": "1",
+        "nSiteAutoriz": "0",
+        "tpAmb": "1",
+        "finNFe": "1",
+        "procEmi": "0",
+        "verProc": "nfeabi-generator-0.1"
+      },
+      "emit": {
+        "CNPJ": "11222333000181",
+        "xNome": "EMITENTE SINTETICO - NAO TRANSMITIR",
+        "enderEmit": {
+          "xLgr": "Avenida de Homologacao",
+          "nro": "100",
+          "xBairro": "Centro",
+          "cMun": "3550308",
+          "xMun": "Sao Paulo",
+          "UF": "SP",
+          "CEP": "01001000",
+          "cPais": "1058",
+          "xPais": "Brasil",
+          "fone": "1130000000"
+        },
+        "tpEmit": "01"
+      },
+      "transmit": [
+        {
+          "@nTransmit": "1",
+          "CNPJ": "11222333000181",
+          "xNome": "TRANSMITENTE SINTETICO - NAO TRANSMITIR",
+          "indContrib": "1"
+        }
+      ],
+      "adquirente": [
+        {
+          "@nAdquir": "1",
+          "CPF": "52998224725",
+          "xNome": "ADQUIRENTE SINTETICO - NAO TRANSMITIR",
+          "enderAdquirente": {
+            "xLgr": "Rua do Adquirente",
+            "nro": "200",
+            "xBairro": "Centro",
+            "cMun": "3550308",
+            "xMun": "Sao Paulo",
+            "UF": "SP",
+            "CEP": "01001000",
+            "cPais": "1058",
+            "xPais": "Brasil",
+            "fone": "11900000000"
+          }
+        }
+      ],
+      "imovel": {
+        "tipo": "1",
+        "cadastro": {
+          "indIPTU": "1",
+          "nIptu": "123456789"
+        },
+        "espImovel": "01",
+        "enderImovel": {
+          "xLgr": "Rua do Imovel",
+          "nro": "300",
+          "xBairro": "Centro",
+          "cMun": "3550308",
+          "xMun": "Sao Paulo",
+          "UF": "SP",
+          "CEP": "01001000",
+          "cPais": "1058",
+          "xPais": "Brasil"
+        },
+        "cartorioRegistro": "Primeiro Registro de Imoveis",
+        "matricTransc": "123456"
+      },
+      "infOper": {
+        "vTotalOperacao": "100000.00",
+        "gIncorpLote": {
+          "indIncorpLote": "0"
+        },
+        "instrumento": {
+          "tpInstrumento": "01",
+          "dtInstrumento": "2026-09-24"
+        },
+        "indIntermedCorret": "0"
+      },
+      "gInfTrib": {
+        "IBSCBS": {
+          "CST": "000",
+          "cClassTrib": "000001",
+          "gIBSCBS": {
+            "vOperacIndiv": "100000.00",
+            "vBC": "100000.00",
+            "gIBSUF": {
+              "pIBSUF": "0.1000",
+              "gRed": {
+                "pRedAliq": "0.0000",
+                "pAliqEfet": "0.1000"
+              },
+              "vIBSUF": "100.00"
+            },
+            "gIBSMun": {
+              "pIBSMun": "0.1000",
+              "gRed": {
+                "pRedAliq": "0.0000",
+                "pAliqEfet": "0.1000"
+              },
+              "vIBSMun": "100.00"
+            },
+            "gCBS": {
+              "pCBS": "0.9000",
+              "gRed": {
+                "pRedAliq": "0.0000",
+                "pAliqEfet": "0.9000"
+              },
+              "vCBS": "900.00"
+            }
+          }
+        }
+      },
+      "total": {
+        "vTotalOperacao": "100000.00",
+        "vOperacIndiv": "100000.00",
+        "tribTot": {
+          "vRedAjusteIndiv": "0.00",
+          "vRedSocialIndiv": "0.00",
+          "vBC": "100000.00",
+          "vIBSUF": "100.00",
+          "vIBSMun": "100.00",
+          "vCBS": "900.00"
+        },
+        "vNF": "101100.00"
+      },
+      "infRespTec": {
+        "CNPJ": "11222333000181",
+        "xContato": "Responsavel Tecnico",
+        "email": "responsavel@example.com",
+        "fone": "1130000000"
+      }
+    },
+    "infNFeSupl": {
+      "qrCode": "https://homologacao.exemplo.invalid/nfeabi/qrcode?chave=PREENCHIDA-PELO-AUTORIZADOR|1|2|CONTEUDO-DEMONSTRATIVO-NAO-UTILIZAR-EM-PRODUCAO",
+      "urlChave": "https://homologacao.exemplo.invalid/nfeabi/consulta"
+    }
+  }
+}

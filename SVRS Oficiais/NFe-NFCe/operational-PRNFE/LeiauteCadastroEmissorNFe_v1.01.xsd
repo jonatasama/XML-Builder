@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema_v1.01.xsd"/>
+	<xs:include schemaLocation="tiposBasico_v1.01.xsd"/>
+	<xs:complexType name="TAtuCadEmiNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Comunica atualização de cadastro de emissores de NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="infAtuCadEmiNFe">
+				<xs:annotation>
+					<xs:documentation>Dados Comunica atualização de cadastro de emissores de NF-e</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="UF" type="TUf">
+							<xs:annotation>
+								<xs:documentation>sigla da UF solicitante</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:choice>
+							<xs:element name="inclui" type="TEmissor">
+								<xs:annotation>
+									<xs:documentation>Inclusão de novo Emissor</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="exclui">
+								<xs:annotation>
+									<xs:documentation>Exclui emissor inserido indevidamente</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UF" type="TUf">
+											<xs:annotation>
+												<xs:documentation>Sigla da UF onde o emissor está autorizado a emitir NF-e</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="CNPJ">
+											<xs:annotation>
+												<xs:documentation>CNPJ do emissor a ser excluído</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+					<xs:attribute name="Id" type="xs:ID"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" use="required" fixed="1.01">
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:totalDigits value="4"/>
+					<xs:fractionDigits value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TRetAtuCadEmiNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno da atualização de cadastro de emissores de NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="infRetAtuCadEmiNFe">
+				<xs:annotation>
+					<xs:documentation>Dados do retorno do processamento daa Comunicção de atualização de cadastro de emissores de NF-e</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="UF" type="TUf">
+							<xs:annotation>
+								<xs:documentation>sigla da UF onde o emissor está autorizado a emitir NF-e</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="CNPJ">
+							<xs:annotation>
+								<xs:documentation>CNPJ do emissor</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ope">
+							<xs:annotation>
+								<xs:documentation>operação solicitada:
+0 - inclusão;
+1 - exclusão.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:unsignedInt">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="resOpe">
+							<xs:annotation>
+								<xs:documentation>Resultado da operação solicitada
+0 - operação realizada com sucesso;
+1 - CNPJ emissor inválido;
+2 - CNPJ matriz inválido;
+3 - já existe emissor com o CNPJ informado;
+4 - não existe emissor com CNPJ informado.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:unsignedInt">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Id" type="xs:ID"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" use="required" fixed="1.01">
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:totalDigits value="4"/>
+					<xs:fractionDigits value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TCadEmiNFe">
+		<xs:annotation>
+			<xs:documentation>Tipo Cadastro de emissores de NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="infCadEmiNFe">
+				<xs:annotation>
+					<xs:documentation>Dados  do cadastro de emissores de NF-e</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dPubCad" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Data de publicação da Cadastro</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="emissor" type="TEmissor" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="Id" type="xs:ID"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" use="required" fixed="1.01">
+			<xs:simpleType>
+				<xs:restriction base="xs:decimal">
+					<xs:totalDigits value="4"/>
+					<xs:fractionDigits value="2"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TEmissor">
+		<xs:annotation>
+			<xs:documentation>Tipo Emissor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UF" type="TUf">
+				<xs:annotation>
+					<xs:documentation>sigla da UF onde o emissor está autorizado a emitir NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJ" type="TCnpj">
+				<xs:annotation>
+					<xs:documentation>CNPJ do Emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CNPJMatriz" type="TCnpj">
+				<xs:annotation>
+					<xs:documentation>CNPJ do Estabelecimento matriz</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IE" type="TIe">
+				<xs:annotation>
+					<xs:documentation>IE do emissor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sit">
+				<xs:annotation>
+					<xs:documentation>Situação do emissor:
+0 - em homologação
+1 - em produção</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedInt">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

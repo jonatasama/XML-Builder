@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas-softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="leiauteDistNFeRS_SEAPA_v1.00.xsd"/>
+	<xs:element name="retDistNFeRS" type="TRetDistNFeRS">
+		<xs:annotation>
+			<xs:documentation>
+				A resposta deste Web Service pode ser:
+				-	Rejeição: Mensagem de retorno com a indicação do motivo da rejeição (tag cStat e xMotivo), conforme documentado nos itens anteriores;
+				-	Nenhum DF-e localizado (cStat=117): Caso não sejam encontrados Documentos Fiscais para os critérios definidos na requisição do Web Service;
+				-	DF-e localizado (cStat=118), retornando os Documentos Fiscais solicitados
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

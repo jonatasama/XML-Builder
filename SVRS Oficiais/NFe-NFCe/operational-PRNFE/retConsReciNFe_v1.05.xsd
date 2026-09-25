@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://www.portalfiscal.inf.br/nfe" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="tiposNFe_v1.04.xsd"/>
+	<xs:include schemaLocation="protNFe_v1.00.xsd"/>
+	<xs:element name="retConsReciNFe">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do retorno do Pedido de  Consulta do Recido do Lote de Notas Fiscais Eletrônicas</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="cStat" type="TStat">
+					<xs:annotation>
+						<xs:documentation>Código do status da mensagem enviada.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="xMotivo">
+					<xs:annotation>
+						<xs:documentation>Descrição literal do status do serviço solicitado.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="255"/>
+							<xs:whiteSpace value="collapse"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="protNFe" minOccurs="0" maxOccurs="50"/>
+			</xs:sequence>
+			<xs:attribute name="versao" use="required" fixed="1.05">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value="4"/>
+						<xs:fractionDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

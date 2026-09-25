@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by sas.softwares@procergs.rs.gov.br (PROCERGS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nf3e" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ns1="http://www.portalfiscal.inf.br/bpe" targetNamespace="http://www.portalfiscal.inf.br/nf3e" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="eventoNF3eTiposBasico_v1.00.xsd"/>
+	<xs:element name="evSubNF3e">
+		<xs:annotation>
+			<xs:documentation>Schema XML de validação do evento de marcação Autorizada NF3e de Substituição 240140</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="descEvento">
+					<xs:annotation>
+						<xs:documentation>Descrição do Evento - “Autorizado Substituição de NF3e”</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:whiteSpace value="preserve"/>
+							<xs:enumeration value="Autorizado Substituição de NF3e"/>
+							<xs:enumeration value="Autorizado Substituicao de NF3e"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="chNF3eSubstituta" type="TChDFe">
+					<xs:annotation>
+						<xs:documentation>Informar a chave de acesso da NF3e de Substituição</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dhRecbto" type="TDateTimeUTC">
+					<xs:annotation>
+						<xs:documentation>Data e hora de processamento da NF3e Substituição</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="nProt" type="TProt">
+					<xs:annotation>
+						<xs:documentation>Número do Protocolo de Autorização da NF3e de Substituição.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

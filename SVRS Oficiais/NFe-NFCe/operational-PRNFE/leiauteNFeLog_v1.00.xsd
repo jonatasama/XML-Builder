@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.portalfiscal.inf.br/nfe" targetNamespace="http://www.portalfiscal.inf.br/nfe" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="leiauteNFe_v2.00.xsd"/>
+	<xs:include schemaLocation="leiauteCancNFe_v2.00.xsd"/>
+	<xs:include schemaLocation="leiauteEvento_v1.00.xsd"/>
+	<xs:complexType name="TConsNFeLog">
+		<xs:annotation>
+			<xs:documentation>Tipo Pedido de Consulta do Registro de Eventos da NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="chNFe" type="TChNFe">
+				<xs:annotation>
+					<xs:documentation>Chaves de acesso da NF-e, compostas por: UF do emitente, AAMM da emissão da NFe, CNPJ do emitente, modelo, série e número da NF-e e código numérico + DV.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerNFeLog" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TRetConsNFeLog">
+		<xs:annotation>
+			<xs:documentation>Tipo Retorno de Pedido de Consulta do Registro de Eventos da NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tpAmb" type="TAmb">
+				<xs:annotation>
+					<xs:documentation>Identificação do Ambiente:
+1 - Produção
+2 - Homologação</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verAplic" type="TVerAplic">
+				<xs:annotation>
+					<xs:documentation>Versão do Aplicativo que processou a consulta da NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cStat" type="TStat">
+				<xs:annotation>
+					<xs:documentation>Código do status da consulta da NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xMotivo" type="TMotivo">
+				<xs:annotation>
+					<xs:documentation>Descrição literal do status da consulta da NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NFeLog" type="TNFeLog" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerNFeLog" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TNFeLog">
+		<xs:annotation>
+			<xs:documentation> Tipo Registro de Eventos da NFe - NFeLog</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="procNFe" type="TNfeProc">
+				<xs:annotation>
+					<xs:documentation>NF-e e autorização de uso</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="procCanc" type="TProcCancNFe" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Solicitação de cancelamento de uso da NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="eveNFe" type="TProcEvento" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Demais eventos vinculados à NF-e</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="versao" type="TVerNFeLog" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="TVerNFeLog">
+		<xs:annotation>
+			<xs:documentation>Tipo Versão da Consuslta Registro de Eventos da NF-e</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="preserve"/>
+			<xs:pattern value="1\.00"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
