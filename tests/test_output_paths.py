@@ -45,6 +45,19 @@ class OutputPathTests(unittest.TestCase):
                                 paths.default_output_directory(),
                             )
 
+    def test_linux_executable_uses_documents_outside_installation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory) / "home"
+            executable = Path(directory) / "bin" / "XsdXmlBuilder"
+            with patch.object(paths.sys, "frozen", True, create=True):
+                with patch.object(paths.sys, "platform", "linux"):
+                    with patch.object(paths.sys, "executable", str(executable)):
+                        with patch.object(paths.Path, "home", return_value=home):
+                            self.assertEqual(
+                                home / "Documents" / "Modelos XML Gerados",
+                                paths.default_output_directory(),
+                            )
+
     def test_manually_chosen_folder_is_preserved_when_root_changes(self) -> None:
         chosen = Path("outros-modelos") / "arquivo.xml"
         self.assertEqual(

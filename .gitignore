@@ -5,6 +5,7 @@ __pycache__/
 output/
 .build-venv/
 .build-venv-macos/
+.build-venv-linux/
 build/
 dist/
 *.spec

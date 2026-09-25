@@ -18,7 +18,7 @@ def project_root() -> Path:
 
 
 def default_output_directory() -> Path:
-    if getattr(sys, "frozen", False) and sys.platform == "darwin":
+    if getattr(sys, "frozen", False) and sys.platform in {"darwin", "linux"}:
         return Path.home() / "Documents" / OUTPUT_FOLDER_NAME
     return project_root() / OUTPUT_FOLDER_NAME
 

@@ -159,8 +159,8 @@ Na interface:
 5. gere e valide o XML.
 
 O arquivo de saída é sugerido em `Modelos XML Gerados`, na raiz do projeto,
-independentemente da pasta dos XSDs. No aplicativo macOS empacotado, o padrão é
-`~/Documents/Modelos XML Gerados`, fora do pacote `.app`. O botão **Salvar como…**
+independentemente da pasta dos XSDs. Nos aplicativos macOS e Linux empacotados, o padrão é
+`~/Documents/Modelos XML Gerados`, fora da pasta de instalação. O botão **Salvar como…**
 permite escolher outra pasta; essa escolha permanece ao trocar o elemento raiz.
 
 Cada `xs:choice` aceita somente uma alternativa. O campo “Alternativa choice” define
@@ -179,7 +179,7 @@ python -m xsd_model_builder `
 
 Sem `--output`, a linha de comando também usa `Modelos XML Gerados`. Informe
 `--output C:\outra-pasta\modelo.xml` no Windows ou
-`--output ~/Documents/modelo.xml` no macOS para escolher outro local.
+`--output ~/Documents/modelo.xml` no macOS ou Linux para escolher outro local.
 
 ## Criar o executável Windows
 
@@ -211,6 +211,27 @@ correspondentes. O `.exe` do Windows não executa no macOS.
 
 Para distribuir o `.app` a outros usuários, assine e notarize o aplicativo com a
 Apple após testar o build no Mac.
+
+## Criar o executável Linux
+
+Em uma máquina Linux com Python 3.11 ou superior, Tkinter e suporte a ambientes
+virtuais, execute:
+
+```bash
+bash build-linux.sh
+```
+
+Em Ubuntu ou Debian, instale os pré-requisitos com
+`sudo apt install python3-tk python3-venv`. O script cria
+`dist/XsdXmlBuilder` e `dist/XsdXmlBuilder-linux-<arquitetura>.tar.gz`.
+Extraia o pacote no Linux e execute `./XsdXmlBuilder` em uma sessão gráfica.
+Os schemas XSD são escolhidos pela interface e não são incluídos no pacote.
+
+Também é possível gerar o pacote sem instalar Linux localmente: publique estas
+alterações no GitHub e execute manualmente **Actions → Build Linux → Run workflow**.
+O pacote ficará disponível como artefato da execução. Ele é gerado em Ubuntu 24.04
+x86_64; para outra arquitetura ou sistemas com bibliotecas mais antigas, compile e
+teste em um Linux compatível com o destino.
 
 ## Testes
 
