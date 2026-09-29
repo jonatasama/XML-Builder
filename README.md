@@ -1,6 +1,6 @@
-# Gerador de NF-e ABI
+# Gerador de XML x XSD - Todos Modelos
 
-MVP para montar, validar e assinar XML da NF-e ABI versão 1.00 com base no pacote
+MVP ABI: para montar, validar e assinar XML da NF-e ABI versão 1.00 com base no pacote
 `PL_NFeABI_1.00` deste repositório.
 
 O projeto também contém o **XSD XML Builder**, uma aplicação genérica que seleciona
